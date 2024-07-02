@@ -25,11 +25,9 @@ export default class Search extends React.Component {
   };
 
   componentDidMount() {
-    // call api
-    // BarracaService.getAsync().then((data) =>{
-    //   debugger
-    //   this.setState({results: data});
-    // })
+    BarracaService.getAsync().then((data) =>{
+      this.setState({results: data});
+    })
   }
 
   animatedValue = new Animated.Value(0);
