@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Animated,
   FlatList,
@@ -15,12 +15,7 @@ const { width } = Dimensions.get("screen");
 
 import { products, Images } from "../constants/";
 import { Icon, Product } from "../components/";
-
-const suggestions = [
-  { id: "auto", title: "Auto", image: Images.Products["Auto"] },
-  { id: "makeup", title: "Makeup", image: Images.Products["Makeup"] },
-  { id: "watches", title: "Watches", image: Images.Products["Watches"] },
-];
+import BarracaService from "../service/BarracaService";
 
 export default class Search extends React.Component {
   state = {
@@ -28,6 +23,14 @@ export default class Search extends React.Component {
     search: "",
     active: false,
   };
+
+  componentDidMount() {
+    // call api
+    // BarracaService.getAsync().then((data) =>{
+    //   debugger
+    //   this.setState({results: data});
+    // })
+  }
 
   animatedValue = new Animated.Value(0);
 
@@ -79,7 +82,7 @@ export default class Search extends React.Component {
         iconContent={iconSearch}
         defaultValue={search}
         style={[styles.search, this.state.active ? styles.shadow : null]}
-        placeholder="What are you looking for?"
+        placeholder="Name of barraca ..."
         onFocus={() => this.setState({ active: true })}
         onBlur={() => this.setState({ active: false })}
         onChangeText={this.handleSearchChange}
@@ -91,61 +94,57 @@ export default class Search extends React.Component {
     return (
       <Block style={styles.notfound}>
         <Text size={18}>
-          We didn’t find "<Text bold>{this.state.search}</Text>" in our store.
-        </Text>
-
-        <Text size={18} style={{ marginTop: theme.SIZES.BASE }}>
-          You can see more products from other categories.
+          We didn’t find "<Text bold>{this.state.search}</Text>".
         </Text>
       </Block>
     );
   };
 
-  renderSuggestions = () => {
-    const { navigation } = this.props;
+  // renderSuggestions = () => {
+  //   const { navigation } = this.props;
 
-    return (
-        <FlatList
-          data={suggestions}
-          keyExtractor={(item, index) => item.id}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              style={styles.suggestion}
-              onPress={() => navigation.navigate("Category", { ...item })}
-            >
-              <Block flex row middle space="between">
-                <Text size={14}>{item.title}</Text>
-                <Icon
-                  name="chevron-right"
-                  family="evilicon"
-                  style={{ paddingRight: 5 }}
-                />
-              </Block>
-            </TouchableOpacity>
-          )}
-        />
-    );
-  };
+  //   return (
+  //       <FlatList
+  //         data={suggestions}
+  //         keyExtractor={(item, index) => item.id}
+  //         renderItem={({ item }) => (
+  //           <TouchableOpacity
+  //             style={styles.suggestion}
+  //             onPress={() => navigation.navigate("Category", { ...item })}
+  //           >
+  //             <Block flex row middle space="between">
+  //               <Text size={14}>{item.title}</Text>
+  //               <Icon
+  //                 name="chevron-right"
+  //                 family="evilicon"
+  //                 style={{ paddingRight: 5 }}
+  //               />
+  //             </Block>
+  //           </TouchableOpacity>
+  //         )}
+  //       />
+  //   );
+  // };
 
-  renderDeals = () => {
-    return (
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.dealsContainer}
-      >
-        <Block flex>
-          <Block flex row>
-            <Product
-              product={products[1]}
-              style={{ marginRight: theme.SIZES.BASE }}
-            />
-            <Product product={products[2]} />
-          </Block>
-          <Product product={products[0]} horizontal />
-        </Block>
-      </ScrollView>
-    );
-  };
+  // renderDeals = () => {
+  //   return (
+  //     <ScrollView
+  //       showsVerticalScrollIndicator={false}
+  //       contentContainerStyle={styles.dealsContainer}
+  //     >
+  //       <Block flex>
+  //         <Block flex row>
+  //           <Product
+  //             product={products[1]}
+  //             style={{ marginRight: theme.SIZES.BASE }}
+  //           />
+  //           <Product product={products[2]} />
+  //         </Block>
+  //         <Product product={products[0]} horizontal />
+  //       </Block>
+  //     </ScrollView>
+  //   );
+  // };
 
   renderResult = (result) => {
     const opacity = this.animatedValue.interpolate({
@@ -171,9 +170,9 @@ export default class Search extends React.Component {
       return (
         <Block style={{ width: width - 40 }}>
           {this.renderNotFound()}
-          {this.renderSuggestions()}
+          {/* {this.renderSuggestions()} 
           <Text size={18}>Daily Deals</Text>
-          {this.renderDeals()}
+          {this.renderDeals()} */}
         </Block>
       );
     }
