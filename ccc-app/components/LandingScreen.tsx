@@ -21,12 +21,8 @@ export default function LandingScreen() {
           </MKButton>
         </View>
 
-      <View>
         <Search />
       </View>
-
-      </View>
-
     </View>
   );
 }

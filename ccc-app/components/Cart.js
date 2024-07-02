@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Dimensions, Image, FlatList, TouchableWithoutFeedback } from 'react-native';
 import { Button, Block, Text, theme } from 'galio-framework';
 
-import { Product, Select } from '../components/';
+import { MenuItem, Select } from '../components/';
 import { materialTheme } from '../constants/';
 import cartItems from '../constants/images/cart';
 
@@ -10,15 +10,15 @@ const { width } = Dimensions.get('screen');
 
 export default class Cart extends React.Component {
   state = {
-    cart: cartItems.products,
+    cart: cartItems.items,
   }
 
   handleQuantity = (id, qty) => {
     const { cart } = this.state;
 
-    const updatedCart = cart.map(product => {
-      if (product.id === id) product.qty = qty;
-      return product;
+    const updatedCart = cart.map(item => {
+      if (item.id === id) item.qty = qty;
+      return item;
     });
 
     this.setState({ cart: updatedCart });
@@ -26,7 +26,7 @@ export default class Cart extends React.Component {
 
   handleDelete = (id) => {
     const { cart } = this.state;
-    const updatedCart = cart.filter(product => (product.id !== id));
+    const updatedCart = cart.filter(item => (item.id !== id));
     this.setState({ cart: updatedCart });
   }
 
@@ -43,7 +43,7 @@ export default class Cart extends React.Component {
     this.setState({ cart });
   }
 
-  renderProduct = ({ item }) => {
+  renderItem = ({ item }) => {
     const { navigation } = this.props;
 
     return (
@@ -115,11 +115,11 @@ export default class Cart extends React.Component {
     )
   }
 
-  renderHorizontalProduct = ({ item }) => {
+  renderHorizontal = ({ item }) => {
     return (
       <Block style={{ marginRight: theme.SIZES.BASE }}>
-        <Product
-          product={item}
+        <MenuItem
+          item={item}
           priceColor={materialTheme.COLORS.ACTIVE}
           imageStyle={{ width: 'auto', height: 94 }}
           style={{ width: width / 2.88 }}
@@ -138,7 +138,7 @@ export default class Cart extends React.Component {
     )
   }
 
-  renderHorizontalProducts = () => {
+  renderHorizontal = () => {
     return (
       <Block style={{ marginHorizontal: theme.SIZES.BASE }}>
         <Text bold size={theme.SIZES.BASE} style={styles.similarTitle}>
@@ -149,7 +149,7 @@ export default class Cart extends React.Component {
           horizontal={true}
           showsHorizontalScrollIndicator={false}
           keyExtractor={(item, index) => `${index}-${item.title}`}
-          renderItem={this.renderHorizontalProduct}
+          renderItem={this.renderHorizontal}
         />
       </Block>
     )
@@ -164,14 +164,14 @@ export default class Cart extends React.Component {
   renderHeader = () => {
     const { navigation } = this.props;
     const { cart } = this.state;
-    const productsQty = cart.length;
-    const total = cart && cart.reduce((prev, product) => prev + (product.price * product.qty), 0);
+    const qty = cart.length;
+    const total = cart && cart.reduce((prev, item) => prev + (item.price * item.qty), 0);
 
     return (
       <Block flex style={styles.header}>
         <Block style={{ marginBottom: theme.SIZES.BASE  }}>
           <Text>
-            Cart subtotal ({productsQty} items):
+            Cart subtotal ({qty} items):
             <Text color={materialTheme.COLORS.ERROR} bold>${total}</Text>
           </Text>
         </Block>
@@ -179,7 +179,7 @@ export default class Cart extends React.Component {
           <Button style={styles.checkout}
             color={materialTheme.COLORS.ACTIVE}
             onPress={() => navigation.navigate('Sign In')} >
-            PROCEED TO CHECKOUT
+            Pay
           </Button>
         </Block>
         <Block style={styles.divider} />
@@ -191,7 +191,7 @@ export default class Cart extends React.Component {
     const { navigation } = this.props;
     return (
       <Block flex style={styles.footer}>
-        {this.renderHorizontalProducts()}
+        {this.renderHorizontal()}
         <Block style={{ marginHorizontal: theme.SIZES.BASE }}>
           <Block style={styles.divider} />
         </Block>
@@ -199,7 +199,7 @@ export default class Cart extends React.Component {
           <Button flex center style={styles.checkout}
             color={materialTheme.COLORS.ACTIVE}
             onPress={() => navigation.navigate('SignIn')} >
-            PROCEED TO CHECKOUT
+            Pay
           </Button>
         </Block>
       </Block>
@@ -212,28 +212,28 @@ export default class Cart extends React.Component {
     );
   }
 
-  renderCheckoutButton() {
-    const { navigation } = this.props;
-    return (
-      <Block center>
-        <Button
-          flex
-          center
-          style={styles.checkout}
-          color={materialTheme.COLORS.ACTIVE}
-          onPress={() => navigation.navigate('SignIn')} >
-          PROCEED TO CHECKOUT
-          </Button>
-      </Block>
-    )
-  }
+  // renderPayButton() {
+  //   const { navigation } = this.props;
+  //   return (
+  //     <Block center>
+  //       <Button
+  //         flex
+  //         center
+  //         style={styles.checkout}
+  //         color={materialTheme.COLORS.ACTIVE}
+  //         onPress={() => navigation.navigate('SignIn')} >
+  //         Pay
+  //         </Button>
+  //     </Block>
+  //   )
+  // }
 
   render() {
     return (
       <Block flex center style={styles.cart}>
         <FlatList
           data={this.state.cart}
-          renderItem={this.renderProduct}
+          renderItem={this.renderItem}
           showsVerticalScrollIndicator={false}
           keyExtractor={(item, index) => `${index}-${item.title}`}
           ListEmptyComponent={this.renderEmpty()}

@@ -2,25 +2,28 @@ import React from 'react';
 // import { withNavigation } from '@react-navigation/compat';
 import { StyleSheet, Dimensions, Image, TouchableWithoutFeedback } from 'react-native';
 import { Block, Text, theme } from 'galio-framework';
+import { Link } from 'expo-router';
 
 const { width } = Dimensions.get('screen');
 
-class Product extends React.Component {
+class Barraca extends React.Component {
   render() {
-    const { navigation, product, horizontal, full, style, priceColor, imageStyle } = this.props;
+    // @ts-ignore
+    const { navigation, barraca, horizontal, full, style, priceColor, imageStyle } = this.props;
     const imageStyles = [styles.image, full ? styles.fullImage : styles.horizontalImage, imageStyle];
 
     return (
       <Block row={horizontal} card flex style={[styles.product, styles.shadow, style]}>
-        <TouchableWithoutFeedback onPress={() => navigation.navigate('Product', { product: product })}>
+        <TouchableWithoutFeedback onPress={() => navigation.navigate('Product', { product: barraca })}>
           <Block flex style={[styles.imageContainer, styles.shadow]}>
-            <Image source={{ uri: product.image }} style={imageStyles} />
+            <Image source={{ uri: barraca.image }} style={imageStyles} />
           </Block>
         </TouchableWithoutFeedback>
-        <TouchableWithoutFeedback onPress={() => navigation.navigate('Product', { product: product })}>
+        <TouchableWithoutFeedback onPress={() => navigation.navigate('Product', { product: barraca })}>
           <Block flex space="between" style={styles.productDescription}>
-            <Text size={14} style={styles.productTitle}>{product.title}</Text>
-            <Text size={12} muted={!priceColor} color={priceColor}>${product.price}</Text>
+            <Text size={14} style={styles.productTitle}>{barraca.title}</Text>
+            {/* <Text size={12} muted={!priceColor} color={priceColor}>Menu</Text> */}
+            <Link href="">Menu</Link>
           </Block>
         </TouchableWithoutFeedback>
       </Block>
@@ -29,12 +32,12 @@ class Product extends React.Component {
 }
 
 // export default withNavigation(Product);
-export default Product;
+export default Barraca;
 
 const styles = StyleSheet.create({
   product: {
-    backgroundColor: theme.COLORS.WHITE,
-    marginVertical: theme.SIZES.BASE,
+    backgroundColor: theme?.COLORS?.WHITE,
+    marginVertical: theme?.SIZES?.BASE,
     borderWidth: 0,
     minHeight: 114,
   },
@@ -44,14 +47,14 @@ const styles = StyleSheet.create({
     paddingBottom: 6,
   },
   productDescription: {
-    padding: theme.SIZES.BASE / 2,
+    padding: (theme?.SIZES?.BASE != undefined ? theme?.SIZES?.BASE : 0) / 2,
   },
   imageContainer: {
     elevation: 1,
   },
   image: {
     borderRadius: 3,
-    marginHorizontal: theme.SIZES.BASE / 2,
+    marginHorizontal: (theme?.SIZES?.BASE != undefined ? theme?.SIZES?.BASE : 0) / 2,
     marginTop: -16,
   },
   horizontalImage: {
@@ -60,10 +63,10 @@ const styles = StyleSheet.create({
   },
   fullImage: {
     height: 215,
-    width: width - theme.SIZES.BASE * 3,
+    width: width - (theme?.SIZES?.BASE != undefined ? theme?.SIZES?.BASE : 0) * 3 ,
   },
   shadow: {
-    shadowColor: theme.COLORS.BLACK,
+    shadowColor: theme?.COLORS?.BLACK,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 3,
     shadowOpacity: 0.1,

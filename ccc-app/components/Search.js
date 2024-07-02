@@ -14,7 +14,7 @@ import { Block, Text, Input, theme } from "galio-framework";
 const { width } = Dimensions.get("screen");
 
 import { products, Images } from "../constants/";
-import { Icon, Product } from "../components/";
+import { Icon, Barraca } from "../components/";
 import BarracaService from "../service/BarracaService";
 
 export default class Search extends React.Component {
@@ -27,6 +27,7 @@ export default class Search extends React.Component {
   componentDidMount() {
     BarracaService.getAsync().then((data) =>{
       this.setState({results: data});
+      this.animate();
     })
   }
 
@@ -156,7 +157,7 @@ export default class Search extends React.Component {
         style={{ width: width - theme.SIZES.BASE * 2, opacity }}
         key={`result-${result.title}`}
       >
-        <Product product={result} horizontal />
+        <Barraca barraca={result} horizontal />
       </Animated.View>
     );
   };
@@ -228,10 +229,6 @@ const styles = StyleSheet.create({
   notfound: {
     marginVertical: theme.SIZES.BASE * 2,
   },
-  suggestion: {
-    height: theme.SIZES.BASE * 1.5,
-    marginBottom: theme.SIZES.BASE,
-  },
   result: {
     backgroundColor: theme.COLORS.WHITE,
     marginBottom: theme.SIZES.BASE,
@@ -253,19 +250,6 @@ const styles = StyleSheet.create({
   dealsContainer: {
     justifyContent: "center",
     paddingTop: theme.SIZES.BASE,
-  },
-  deals: {
-    backgroundColor: theme.COLORS.WHITE,
-    marginBottom: theme.SIZES.BASE,
-    borderWidth: 0,
-  },
-  dealsTitle: {
-    flex: 1,
-    flexWrap: "wrap",
-    paddingBottom: 6,
-  },
-  dealsDescription: {
-    padding: theme.SIZES.BASE / 2,
   },
   imageHorizontal: {
     overflow: "hidden",
