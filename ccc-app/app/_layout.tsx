@@ -5,8 +5,11 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
+import { Block, GalioProvider } from "galio-framework";
+import { Platform, StatusBar } from 'react-native';
 
 import { useColorScheme } from '@/components/useColorScheme';
+import { materialTheme } from "../constants/";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -48,12 +51,36 @@ export default function RootLayout() {
 function RootLayoutNav() {
   const colorScheme = useColorScheme();
 
+  const _loadResourcesAsync = async () => {
+    // return Promise.all([...cacheImages(assetImages)]);
+  };
+
+  // const onLayoutRootView = useCallback(async () => {
+  //   if (appIsReady) {
+  //     await SplashScreen.hideAsync();
+  //   }
+  // }, [appIsReady]);
+
+  // if (!appIsReady) {
+  //   return null;
+  // }
+
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-      </Stack>
-    </ThemeProvider>
+    // <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    //   <Stack>
+    //     <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+    //     <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+    //   </Stack>
+    // </ThemeProvider>
+
+    <GalioProvider theme={materialTheme}>
+      <Block flex>
+        {Platform.OS === "ios" && <StatusBar barStyle="default" />}
+        <Stack>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+        </Stack>
+      </Block>
+    </GalioProvider>
   );
 }
