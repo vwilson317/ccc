@@ -1,14 +1,14 @@
 const Onboarding = 'https://images.unsplash.com/photo-1485796826113-174aa68fd81b?fit=crop&w=840&q=80';
 const Products = {
-  'Auto': 'https://images.unsplash.com/photo-1533106418989-88406c7cc8ca?fit=crop&w=840&q=80',
-  'Motocycle': 'https://images.unsplash.com/photo-1512798428556-626e79a5d83a?fit=crop&w=840&q=80',
-  'Watches': 'https://images.unsplash.com/photo-1434056886845-dac89ffe9b56?fit=crop&w=840&q=80',
-  'Makeup': 'https://images.unsplash.com/photo-1526045478516-99145907023c?fit=crop&w=840&q=80',
-  'Accessories': 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?fit=crop&w=840&q=80',
-  'Fragrance': 'https://images.unsplash.com/photo-1537349564218-ad1b0c334032?fit=crop&w=840&q=80',
-  'BMW': 'https://images.unsplash.com/photo-1536676442959-4a7ce781e8c8?fit=crop&w=840&q=80',
-  'Mustang': 'https://images.unsplash.com/photo-1516661874749-3a8e9d1a8f18?fit=crop&w=840&q=80',
-  'Harley-Davidson': 'https://images.unsplash.com/photo-1515777315835-281b94c9589f?fit=crop&w=840&q=80',
+  'BARRACA DO URUGUAI': 'https://media-cdn.tripadvisor.com/media/photo-s/16/47/74/bb/photo1jpg.jpg',
+  // 'Motocycle': 'https://images.unsplash.com/photo-1512798428556-626e79a5d83a?fit=crop&w=840&q=80',
+  // 'Watches': 'https://images.unsplash.com/photo-1434056886845-dac89ffe9b56?fit=crop&w=840&q=80',
+  // 'Makeup': 'https://images.unsplash.com/photo-1526045478516-99145907023c?fit=crop&w=840&q=80',
+  // 'Accessories': 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?fit=crop&w=840&q=80',
+  // 'Fragrance': 'https://images.unsplash.com/photo-1537349564218-ad1b0c334032?fit=crop&w=840&q=80',
+  // 'BMW': 'https://images.unsplash.com/photo-1536676442959-4a7ce781e8c8?fit=crop&w=840&q=80',
+  // 'Mustang': 'https://images.unsplash.com/photo-1516661874749-3a8e9d1a8f18?fit=crop&w=840&q=80',
+  // 'Harley-Davidson': 'https://images.unsplash.com/photo-1515777315835-281b94c9589f?fit=crop&w=840&q=80',
 };
 
 const Profile = 'https://images.unsplash.com/photo-1512529920731-e8abaea917a5?fit=crop&w=840&q=80';

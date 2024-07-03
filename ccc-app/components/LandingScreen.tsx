@@ -14,12 +14,6 @@ export default function LandingScreen() {
   return (
     <View>
       <View style={styles.getStartedContainer}>
-        <View style={styles.qrButton}>
-          <MKButton>
-            <Icon size={16} name="camera-18" family="GalioExtra" style={{ paddingRight: 8, color: 'white' }} />
-            <Text style={{ color: 'white' }}>Scan QR Code</Text>
-          </MKButton>
-        </View>
 
         <Search />
       </View>

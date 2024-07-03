@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useRef } from "react";
 import {
   Animated,
   FlatList,
@@ -8,6 +8,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  SafeAreaView
 } from "react-native";
 import { Block, Text, Input, theme } from "galio-framework";
 
@@ -22,11 +23,12 @@ export default class Search extends React.Component {
     results: [],
     search: "",
     active: false,
+    scrollOffsetY: React.createRef(new Animated.Value(0)).current
   };
 
   componentDidMount() {
-    BarracaService.getAsync().then((data) =>{
-      this.setState({results: data});
+    BarracaService.getAsync().then((data) => {
+      this.setState({ results: data });
       this.animate();
     })
   }
@@ -45,7 +47,7 @@ export default class Search extends React.Component {
 
   handleSearchChange = (search) => {
     const results = products.filter(
-      (item) => search && item.title.toLowerCase().includes(search)
+      (item) => search && item.name.toLowerCase().includes(search)
     );
     this.setState({ results, search });
     this.animate();
@@ -72,20 +74,22 @@ export default class Search extends React.Component {
     );
 
     return (
-      <Input
-        right
-        color="black"
-        autoFocus={true}
-        autoCorrect={false}
-        autoCapitalize="none"
-        iconContent={iconSearch}
-        defaultValue={search}
-        style={[styles.search, this.state.active ? styles.shadow : null]}
-        placeholder="Name of barraca ..."
-        onFocus={() => this.setState({ active: true })}
-        onBlur={() => this.setState({ active: false })}
-        onChangeText={this.handleSearchChange}
-      />
+      <View style={{ flex: 1, alignItems: 'center' }}>
+        <Input
+          right
+          color="black"
+          autoFocus={true}
+          autoCorrect={false}
+          autoCapitalize="none"
+          iconContent={iconSearch}
+          defaultValue={search}
+          style={[styles.search, this.state.active ? styles.shadow : null]}
+          placeholder="Name of barraca ..."
+          onFocus={() => this.setState({ active: true })}
+          onBlur={() => this.setState({ active: false })}
+          onChangeText={this.handleSearchChange}
+        />
+      </View>
     );
   };
 
@@ -187,12 +191,12 @@ export default class Search extends React.Component {
 
   render() {
     return (
-      <Block flex center style={styles.searchContainer}>
-        <Block center style={styles.header}>
-          {this.renderSearch()}
+        <Block flex style={styles.searchContainer}>
+          <Block center style={styles.header}>
+            {this.renderSearch()}
+          </Block>
+          <View showsVerticalScrollIndicator={true}>{this.renderResults()}</View>
         </Block>
-        <View showsVerticalScrollIndicator={false}>{this.renderResults()}</View>
-      </Block>
     );
   }
 }
@@ -201,6 +205,8 @@ const styles = StyleSheet.create({
   searchContainer: {
     width: width,
     paddingHorizontal: theme.SIZES.BASE,
+    // position: 'relative',
+    // top: 0
   },
   search: {
     height: 48,

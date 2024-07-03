@@ -3,6 +3,7 @@ import React from 'react';
 import { StyleSheet, Dimensions, Image, TouchableWithoutFeedback } from 'react-native';
 import { Block, Text, theme } from 'galio-framework';
 import { Link } from 'expo-router';
+import Button from './Button';
 
 const { width } = Dimensions.get('screen');
 
@@ -21,9 +22,10 @@ class Barraca extends React.Component {
         </TouchableWithoutFeedback>
         <TouchableWithoutFeedback onPress={() => navigation.navigate('Product', { product: barraca })}>
           <Block flex space="between" style={styles.productDescription}>
-            <Text size={14} style={styles.productTitle}>{barraca.title}</Text>
+            <Text size={14} style={styles.productTitle}>{barraca.name}</Text>
             {/* <Text size={12} muted={!priceColor} color={priceColor}>Menu</Text> */}
             <Link href="">Menu</Link>
+            <Button>Pix</Button>
           </Block>
         </TouchableWithoutFeedback>
       </Block>
