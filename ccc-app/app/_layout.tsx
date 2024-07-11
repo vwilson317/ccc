@@ -75,11 +75,12 @@ function RootLayoutNav() {
 
     <GalioProvider theme={materialTheme}>
       {/* <Block flex> */}
-        {Platform.OS === "ios" && <StatusBar barStyle="default" />}
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-        </Stack>
+      {Platform.OS === "ios" && <StatusBar barStyle="default" />}
+      <Stack>
+        {/* <Stack.Screen name="(drawer)" options={{ headerShown: false }} /> */}
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+      </Stack>
       {/* </Block> */}
     </GalioProvider>
   );
