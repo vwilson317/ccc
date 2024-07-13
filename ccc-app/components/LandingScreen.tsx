@@ -9,6 +9,7 @@ import MKButton from './Button';
 import Colors from '@/constants/Colors';
 import Icon from './Icon';
 import Search from './Search';
+import ScannerScreen from './ScannerScreen';
 
 export default function LandingScreen() {
   return (
@@ -16,6 +17,7 @@ export default function LandingScreen() {
       <View style={styles.getStartedContainer}>
 
         <Search />
+        {/* <ScannerScreen /> */}
       </View>
     </View>
   );

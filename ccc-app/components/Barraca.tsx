@@ -15,11 +15,13 @@ class Barraca extends React.Component {
 
     return (
       <Block row={horizontal} card flex style={[styles.product, styles.shadow, style]}>
-        <TouchableWithoutFeedback onPress={() => navigation.navigate('Product', { product: barraca })}>
+        {/* <TouchableWithoutFeedback onPress={() => navigation.navigate('Product', { product: barraca })}> */}
+        <Link href="/barraca" >
           <Block flex style={[styles.imageContainer, styles.shadow]}>
             <Image source={{ uri: barraca.image }} style={imageStyles} />
           </Block>
-        </TouchableWithoutFeedback>
+          </Link>
+        {/* </TouchableWithoutFeedback> */}
         <TouchableWithoutFeedback onPress={() => navigation.navigate('Product', { product: barraca })}>
           <Block flex space="between" style={styles.productDescription}>
             <Text size={14} style={styles.productTitle}>{barraca.name}</Text>
