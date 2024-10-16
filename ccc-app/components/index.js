@@ -2,7 +2,7 @@ import Button from './Button';
 import Select from './Select';
 import Icon from './Icon';
 import Tabs from './Tabs';
-import Barraca from './Barraca';
+import Barraca from './BarracaDetail';
 // import MenuItem from './MenuItem'
 import Drawer from './Drawer';
 import Header from './Header';

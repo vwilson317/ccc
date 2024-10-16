@@ -10,7 +10,7 @@ const { width } = Dimensions.get('screen');
 class Barraca extends React.Component {
   render() {
     // @ts-ignore
-    const { navigation, barraca, horizontal, full, style, priceColor, imageStyle } = this.props;
+    const { barraca, horizontal, full, style, priceColor, imageStyle } = this.props;
     const imageStyles = [styles.image, full ? styles.fullImage : styles.horizontalImage, imageStyle];
 
     return (
@@ -20,16 +20,18 @@ class Barraca extends React.Component {
           <Block flex style={[styles.imageContainer, styles.shadow]}>
             <Image source={{ uri: barraca.image }} style={imageStyles} />
           </Block>
-          </Link>
+        </Link>
         {/* </TouchableWithoutFeedback> */}
-        <TouchableWithoutFeedback onPress={() => navigation.navigate('Product', { product: barraca })}>
+        {/* <TouchableWithoutFeedback onPress={() => navigation.navigate('Product', { product: barraca })}> */}
+        <Link href="/barraca">
           <Block flex space="between" style={styles.productDescription}>
             <Text size={14} style={styles.productTitle}>{barraca.name}</Text>
             {/* <Text size={12} muted={!priceColor} color={priceColor}>Menu</Text> */}
             <Link href="">Menu</Link>
             <Button>Pix</Button>
           </Block>
-        </TouchableWithoutFeedback>
+        </Link>
+        {/* </TouchableWithoutFeedback> */}
       </Block>
     );
   }
@@ -67,7 +69,7 @@ const styles = StyleSheet.create({
   },
   fullImage: {
     height: 215,
-    width: width - (theme?.SIZES?.BASE != undefined ? theme?.SIZES?.BASE : 0) * 3 ,
+    width: width - (theme?.SIZES?.BASE != undefined ? theme?.SIZES?.BASE : 0) * 3,
   },
   shadow: {
     shadowColor: theme?.COLORS?.BLACK,
