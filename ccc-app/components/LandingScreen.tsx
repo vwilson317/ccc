@@ -15,7 +15,7 @@ export default function LandingScreen() {
   return (
     <View>
       <View style={styles.getStartedContainer}>
-
+        <Text>Search</Text>
         <Search />
         {/* <ScannerScreen /> */}
       </View>

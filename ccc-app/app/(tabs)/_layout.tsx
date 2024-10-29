@@ -46,10 +46,11 @@ export default function TabLayout() {
             //     )}
             //   </Pressable>
             // </Link>
-            <View style={styles.qrButton}>
+            
+        <View style={styles.qrButton}>
             <MKButton>
               <Icon size={16} name="camera-18" family="GalioExtra" style={{ paddingRight: 8, color: 'white' }} />
-              <Text style={{ color: 'white' }}>Scan QR Code</Text>
+               <Text style={{ color: 'white' }}>Scan QR Code</Text> 
             </MKButton>
           </View>
           ),

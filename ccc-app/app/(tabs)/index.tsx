@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 import LandingScreen from '@/components/LandingScreen';
-import { Text, View } from '@/components/Themed';
+import { View } from '@/components/Themed';
 
 export default function TabOneScreen() {
   return (
