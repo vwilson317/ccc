@@ -4,41 +4,67 @@ import { StyleSheet, Dimensions, Image, TouchableWithoutFeedback } from 'react-n
 import { Block, Text, theme } from 'galio-framework';
 import { Link } from 'expo-router';
 import Button from './Button';
+import { IBarraca } from '@/interfaces/Barraca';
 
 const { width } = Dimensions.get('screen');
 
-class Barraca extends React.Component {
-  render() {
-    // @ts-ignore
-    const { barraca, horizontal, full, style, priceColor, imageStyle } = this.props;
-    const imageStyles = [styles.image, full ? styles.fullImage : styles.horizontalImage, imageStyle];
+export function Barraca({ barraca, horizontal, style }: { barraca: IBarraca, horizontal: boolean, style: any }) {
 
-    return (
-      <Block row={horizontal} card flex style={[styles.product, styles.shadow, style]}>
-        {/* <TouchableWithoutFeedback onPress={() => navigation.navigate('Product', { product: barraca })}> */}
-        <Link href="/barraca" >
-          <Block flex style={[styles.imageContainer, styles.shadow]}>
-            <Image source={{ uri: barraca.image }} style={imageStyles} />
-          </Block>
-        </Link>
-        {/* </TouchableWithoutFeedback> */}
-        {/* <TouchableWithoutFeedback onPress={() => navigation.navigate('Product', { product: barraca })}> */}
-        <Link href="/barraca">
-          <Block flex space="between" style={styles.productDescription}>
-            <Text size={14} style={styles.productTitle}>{barraca.name}</Text>
-            {/* <Text size={12} muted={!priceColor} color={priceColor}>Menu</Text> */}
-            <Link href="">Menu</Link>
-            <Button>Pix</Button>
-          </Block>
-        </Link>
-        {/* </TouchableWithoutFeedback> */}
-      </Block>
-    );
-  }
+  return (
+    <Block row={horizontal} card flex style={[styles.product, styles.shadow, style]}>
+      {/* <TouchableWithoutFeedback onPress={() => navigation.navigate('Product', { product: barraca })}> */}
+      <Link href="/barraca" >
+        <Block flex style={[styles.imageContainer, styles.shadow]}>
+          <Image source={{ uri: barraca.imageUrl }} /> {/* style={imageStyles} /> */}
+        </Block>
+      </Link>
+      {/* </TouchableWithoutFeedback> */}
+      {/* <TouchableWithoutFeedback onPress={() => navigation.navigate('Product', { product: barraca })}> */}
+      <Link href="/barraca">
+        <Block flex space="between" style={styles.productDescription}>
+          <Text size={14} style={styles.productTitle}>{barraca.name}</Text>
+          {/* <Text size={12} muted={!priceColor} color={priceColor}>Menu</Text> */}
+          <Link href="">Menu</Link>
+          <Button>Pix</Button>
+        </Block>
+      </Link>
+      {/* </TouchableWithoutFeedback> */}
+    </Block>
+  )
 }
 
+// class Barraca extends React.Component {
+//   render() {
+//     // @ts-ignore
+//     const { barraca, horizontal, full, style, priceColor, imageStyle } = this.props;
+//     const imageStyles = [styles.image, full ? styles.fullImage : styles.horizontalImage, imageStyle];
+
+//     return (
+//       <Block row={horizontal} card flex style={[styles.product, styles.shadow, style]}>
+//         {/* <TouchableWithoutFeedback onPress={() => navigation.navigate('Product', { product: barraca })}> */}
+//         <Link href="/barraca" >
+//           <Block flex style={[styles.imageContainer, styles.shadow]}>
+//             <Image source={{ uri: barraca.image }} style={imageStyles} />
+//           </Block>
+//         </Link>
+//         {/* </TouchableWithoutFeedback> */}
+//         {/* <TouchableWithoutFeedback onPress={() => navigation.navigate('Product', { product: barraca })}> */}
+//         <Link href="/barraca">
+//           <Block flex space="between" style={styles.productDescription}>
+//             <Text size={14} style={styles.productTitle}>{barraca.name}</Text>
+//             {/* <Text size={12} muted={!priceColor} color={priceColor}>Menu</Text> */}
+//             <Link href="">Menu</Link>
+//             <Button>Pix</Button>
+//           </Block>
+//         </Link>
+//         {/* </TouchableWithoutFeedback> */}
+//       </Block>
+//     );
+//   }
+// }
+
 // export default withNavigation(Product);
-export default Barraca;
+// export default Barraca;
 
 const styles = StyleSheet.create({
   product: {

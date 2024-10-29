@@ -15,8 +15,10 @@ import { Block, Text, Input, theme } from "galio-framework";
 const { width } = Dimensions.get("screen");
 
 import { products, Images } from "../constants/";
-import { Icon, Barraca } from "../components/";
+import { Icon } from "../components/";
+import { Barraca } from "../components/Barraca";
 import BarracaService from "../service/BarracaService";
+import { IBarraca } from "../interfaces/Barraca";
 
 export default class Search extends React.Component {
   state = {
@@ -149,7 +151,7 @@ export default class Search extends React.Component {
   //   );
   // };
 
-  renderResult = (result) => {
+  renderResult = (result: IBarraca) => {
     const opacity = this.animatedValue.interpolate({
       inputRange: [0, 1],
       outputRange: [0.8, 1],
@@ -159,7 +161,7 @@ export default class Search extends React.Component {
     return (
       <Animated.View
         style={{ width: width - theme.SIZES.BASE * 2, opacity }}
-        key={`result-${result.title}`}
+        key={`result-${result.name}`}
       >
         <Barraca barraca={result} horizontal />
       </Animated.View>
