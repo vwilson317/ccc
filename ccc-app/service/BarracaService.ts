@@ -1,9 +1,15 @@
-import { products } from "@/constants"
-
+import { barracas } from "@/constants"
+import axios from "axios"
 class BarracaService {
     //todo: implement api call
     async getAsync() {
-        return await new Promise((resolve) => resolve(products))
+        const result = await axios.get('http://localhost:5298/barracas', {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        });
+        return result.data;
     }
 }
 

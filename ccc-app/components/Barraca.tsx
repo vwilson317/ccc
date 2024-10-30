@@ -8,26 +8,30 @@ import { IBarraca } from '@/interfaces/Barraca';
 
 const { width } = Dimensions.get('screen');
 
-export function Barraca({ barraca, horizontal, style }: { barraca: IBarraca, horizontal: boolean, style: any }) {
+export function Barraca({ barraca, horizontal, style, full, imageStyle }: 
+  { barraca: IBarraca, horizontal: boolean, style: any, full: boolean, imageStyle: any }) {
+    // const { barraca, horizontal, full, style, priceColor, imageStyle } = this.props;
+
+    const imageStyles = [styles.image, full ? styles.fullImage : styles.horizontalImage, imageStyle];
 
   return (
     <Block row={horizontal} card flex style={[styles.product, styles.shadow, style]}>
       {/* <TouchableWithoutFeedback onPress={() => navigation.navigate('Product', { product: barraca })}> */}
-      <Link href="/barraca" >
+      {/* <Link href="/barraca" > */}
         <Block flex style={[styles.imageContainer, styles.shadow]}>
-          <Image source={{ uri: barraca.imageUrl }} /> {/* style={imageStyles} /> */}
+          <Image source={{ uri: barraca.imageUrl }} style={imageStyles} />
         </Block>
-      </Link>
+      {/* </Link> */}
       {/* </TouchableWithoutFeedback> */}
       {/* <TouchableWithoutFeedback onPress={() => navigation.navigate('Product', { product: barraca })}> */}
-      <Link href="/barraca">
+      {/* <Link href="/barraca"> */}
         <Block flex space="between" style={styles.productDescription}>
           <Text size={14} style={styles.productTitle}>{barraca.name}</Text>
           {/* <Text size={12} muted={!priceColor} color={priceColor}>Menu</Text> */}
           <Link href="">Menu</Link>
           <Button>Pix</Button>
         </Block>
-      </Link>
+      {/* </Link> */}
       {/* </TouchableWithoutFeedback> */}
     </Block>
   )
