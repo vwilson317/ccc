@@ -31,22 +31,17 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Carioca Coastal Club',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Search',
+          headerTitle: () => (
+            <Text>Carioca Coastal Club</Text>
+          ),
+          tabBarIcon: ({ color }) =>  <Icon
+          // size={16}
+          //color={theme.COLORS.MUTED}
+          name="magnifying-glass"
+          family="entypo"
+        />,
           headerRight: () => (
-            // <Link href="/modal" asChild>
-            //   <Pressable>
-            //     {({ pressed }) => (
-            //       <FontAwesome
-            //         name="info-circle"
-            //         size={25}
-            //         color={Colors[colorScheme ?? 'light'].text}
-            //         style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-            //       />
-            //     )}
-            //   </Pressable>
-            // </Link>
-            
         <View style={styles.qrButton}>
             <MKButton>
               <Icon size={16} name="camera-18" family="GalioExtra" style={{ paddingRight: 8, color: 'white' }} />
@@ -56,13 +51,13 @@ export default function TabLayout() {
           ),
         }}
       />
-      {/* <Tabs.Screen
-        name="two"
+      <Tabs.Screen
+        name="admin"
         options={{
-          title: 'Tab Two',
+          title: 'Admin',
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
-      />*/}
+      />
     </Tabs> 
   );
 }

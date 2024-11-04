@@ -1,12 +1,14 @@
-import { StyleSheet } from 'react-native';
-
+import { StyleSheet, TextInput } from 'react-native';
+import CheckBox from 'react-native-checkbox';
 import EditScreenInfo from '@/components/LandingScreen';
 import { Text, View } from '@/components/Themed';
 
 export default function TabTwoScreen() {
   return (
     <View style={styles.container}>
-
+      <CheckBox />
+      <TextInput placeholder="Open time" />
+      <TextInput placeholder="Close time" />
     </View>
   );
 }
