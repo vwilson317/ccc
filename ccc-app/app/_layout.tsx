@@ -10,6 +10,9 @@ import { Platform, StatusBar } from 'react-native';
 
 import { useColorScheme } from '@/components/useColorScheme';
 import { materialTheme } from "../constants/";
+import { PaperProvider } from 'react-native-paper';
+import { enGB, registerTranslation } from 'react-native-paper-dates'
+registerTranslation('en-GB', enGB)
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -74,7 +77,7 @@ function RootLayoutNav() {
     // </ThemeProvider>
 
     <GalioProvider theme={materialTheme}>
-      {/* <Block flex> */}
+      <PaperProvider>
       {Platform.OS === "ios" && <StatusBar barStyle="default" />}
       <Stack>
         {/* <Stack.Screen name="(drawer)" options={{ headerShown: false }} /> */}
@@ -82,6 +85,9 @@ function RootLayoutNav() {
         <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
       </Stack>
       {/* </Block> */}
+      </PaperProvider>
+      {/* <Block flex> */}
+
     </GalioProvider>
   );
 }
