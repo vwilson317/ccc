@@ -5,8 +5,10 @@ import EditScreenInfo from '@/components/LandingScreen';
 import { Text, View } from '@/components/Themed';
 import DatePicker from '@/components/DatePicker';
 import { TextInput } from 'react-native-paper';
+import { useDateContext } from '@/contexts/DateContext';
 
 export default function TabTwoScreen() {
+  const { dates } = useDateContext();
   const [openHour, setOpenHour] = useState<string>('07');
   const [openMinute, setOpenMinute] = useState<string>('00');
   const [closeHour, setCloseHour] = useState<string>('17');
@@ -26,6 +28,14 @@ export default function TabTwoScreen() {
       return text.padStart(2, '0');
     }
     return '';
+  };
+
+  const formatDate = (date: Date) => {
+    return date.toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric'
+    });
   };
 
   return (
@@ -76,6 +86,10 @@ export default function TabTwoScreen() {
         />
       </View>
       <DatePicker />
+      <Text>Selected Dates: {dates.length > 0 
+        ? dates.map(date => formatDate(date)).join(', ')
+        : 'No dates selected'}
+      </Text>
     </View>
   );
 }
